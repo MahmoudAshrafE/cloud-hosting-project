@@ -4,13 +4,11 @@ import { protectAdmin } from '@/utils/protectAdmin'
 import React from 'react'
 import EditArticleForm from './EditArticleForm'
 
-interface EditArticlePageProps {
-    params : {id: string}
-}
-const EditArticlePage = async({params}: EditArticlePageProps) => {
-     await protectAdmin()
 
-     const article: Article = await getSingleArticle(params.id);
+const EditArticlePage = async({ params }: { params: Promise<{ id: string }> }) => {
+     await protectAdmin()
+  const { id } = await params; 
+     const article: Article = await getSingleArticle(id);
 
   return (
     <section className='fix-height flex items-center justify-center px-5 lg:px-20'>
