@@ -10,7 +10,8 @@ const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) =
   const {id} = await context.params
   const token = (await cookies()).get("jwtToken")?.value || ""
   const payload = verifyTokenBerPage(token)
-      const article: SingleArticle = await getSingleArticle(id);
+
+      const article: SingleArticle= await getSingleArticle(id);
 
   return (
     <section className="fix-height container m-auto w-full px-5 pt-8 md:w-3/4">
