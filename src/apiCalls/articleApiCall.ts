@@ -5,7 +5,7 @@ import { SingleArticle } from "@/utils/types";
 
 // Get Article passed page Number
  export async function getArticles(pageNumber: string | undefined): Promise<Article []>{
-      const response = await fetch(`http://localhost:3000/api/articles?pageNumber=${pageNumber}`,
+      const response = await fetch(`${DOMAIN}/api/articles?pageNumber=${pageNumber}`,
         { cache: 'no-store'}
       )
 
