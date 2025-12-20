@@ -1,28 +1,33 @@
 import { cookies } from 'next/headers'
-import Link from 'next/link'
-import styles from './header.module.css'
+import { Link } from '@/i18n/navigation'
 import Navbar from './Navbar'
 import { verifyTokenBerPage } from '@/utils/verifyToken'
 import HeaderContent from './HeaderContent'
+import LanguageSwitcher from './LanguageSwitcher';
+import { getTranslations } from 'next-intl/server';
 
 const Header = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("jwtToken")?.value || "";
   const payload = verifyTokenBerPage(token)
+  const t = await getTranslations('Navbar');
 
 
   return (
-    <header className={styles.header}>
+    <header className="sticky top-0 h-24 flex items-center justify-between px-6 lg:px-16 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 shadow-sm z-50 transition-all duration-500">
       <Navbar isAdmin={payload?.isAdmin} />
-      <div className={styles.right}>
+      <div className="flex items-center gap-6 lg:gap-8">
+        <div className="flex items-center gap-4 pr-6 border-r border-slate-800">
+          <LanguageSwitcher />
+        </div>
         {
           payload ? (
-            <HeaderContent payload={payload}/>
+            <HeaderContent payload={payload} />
           ) : (
-            <>
-              <Link className={styles.btn} href='/login'>Login</Link>
-              <Link className={styles.btn} href='/register'>Register</Link>
-            </>)
+            <div className="flex items-center gap-4">
+              <Link className="px-5 py-2.5 text-white font-black hover:text-blue-400 transition-colors uppercase tracking-widest text-[13px]" href='/login'>{t('login')}</Link>
+              <Link className="px-8 py-3 bg-blue-600 dark:bg-blue-700 text-white font-black rounded-2xl shadow-xl shadow-blue-500/20 hover:bg-blue-700 dark:hover:bg-blue-600 transition-all hover:-translate-y-0.5 active:scale-95 uppercase tracking-widest text-[13px]" href='/register'>{t('register')}</Link>
+            </div>)
         }
       </div>
     </header>

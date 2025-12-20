@@ -1,12 +1,13 @@
 export interface CreateArticleDto {
     title: string;
     description: string;
-
+    image?: string;
 }
 
 export interface UpdateArticleDto {
     title?: string;
     description?: string;
+    image?: string;
 }
 
 export interface RegisterUserDto {
@@ -21,9 +22,10 @@ export interface LoginUserDto {
 }
 
 export interface UpdateUserDto {
-    username?:string;
+    username?: string;
     email?: string;
     password?: string;
+    currentPassword?: string;
 }
 
 export interface CreateCommentDto {

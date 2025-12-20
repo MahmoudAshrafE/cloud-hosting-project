@@ -8,72 +8,88 @@ import { toast } from "react-toastify"
 import axios, { AxiosError } from "axios"
 import { DOMAIN } from "@/utils/constants"
 import { useRouter } from "next/navigation"
-interface CommentItemProps{
-    comment: CommentWithUser,
-    userId : number | undefined
-}
-const CommentItem = ({comment, userId}: CommentItemProps) => {
-    const [open, setOpen] = useState(false)
-    const router = useRouter()
-    const commentDeleteHandller = async () => {
-    toast.warn(
-      ({ closeToast }) => (
-        <div>
-          <p className="text-white text-xl">Are you sure you want to delete this comment?</p>
-          <div className="flex gap-2 mt-2">
-            <button
-              className="px-3 py-1 bg-red-600 text-white rounded cursor-pointer"
-              onClick={async () => {
-                try {
-                  await axios.delete(`${DOMAIN}/api/comments/${comment.id}`);
-                  router.refresh();
-                  closeToast();
-                  toast.success("Comment deleted successfully!");
-} catch (err) {
-    const error = err as AxiosError<{ message: string }>;
-    toast.error(error.response?.data?.message || "Something went wrong");
+import { useTranslations } from 'next-intl';
 
+import ConfirmationModal from "@/components/ConfirmationModal"
+
+interface CommentItemProps {
+  comment: CommentWithUser,
+  userId: number | undefined
 }
-              }}
-            >
-              Yes
-            </button>
-            <button
-              className="px-3 py-1 bg-gray-500 text-white rounded cursor-pointer"
-              onClick={() => closeToast()}
-            >
-              No
-            </button>
-          </div>
-        </div>
-      ),
-      { autoClose: false }
-    );
+const CommentItem = ({ comment, userId }: CommentItemProps) => {
+  const t = useTranslations('Comments');
+  const tAdmin = useTranslations('Admin');
+  const [open, setOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const router = useRouter()
+
+  const commentDeleteHandller = async () => {
+    setIsDeleting(true)
+    try {
+      await axios.delete(`${DOMAIN}/api/comments/${comment.id}`);
+      router.refresh();
+      toast.success(t('delete_success'));
+      setShowConfirm(false)
+    } catch (err) {
+      const error = err as AxiosError<{ message: string }>;
+      toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setIsDeleting(false)
+    }
   };
-    
+
   return (
-    <div className="mb-5 rounded-lg p-3 bg-gray-200 border-2 border-gray-300">
-        <div className="flex items-center justify-between mb-2">
-            <strong className="text-gray-800 uppercase">
-                {comment?.user?.username}
-            </strong>
-            <span className="bg-yellow-700 px-1 rounded-lg text-white">
-                {new Date(comment?.createdAt).toDateString()}
-            </span>
+    <div className="mb-5 rounded-[2rem] p-8 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl rounded-full"></div>
+
+      <div className="flex items-center justify-between mb-4 relative z-10">
+        <strong className="text-gray-900 dark:text-white uppercase font-black tracking-tight text-lg">
+          {comment?.user?.username}
+        </strong>
+        <span className="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-4 py-1 rounded-full text-xs font-bold border border-gray-100 dark:border-slate-700 shadow-sm">
+          {new Date(comment?.createdAt).toDateString()}
+        </span>
+      </div>
+
+      <p className="text-gray-600 dark:text-gray-300 mb-6 whitespace-pre-wrap leading-relaxed text-lg font-medium relative z-10">
+        {comment?.text}
+      </p>
+
+      {
+        userId && (userId === comment.userId) &&
+        <div className="flex justify-end items-center pt-6 border-t border-gray-100 dark:border-slate-800 relative z-10">
+          <button
+            onClick={() => setOpen(true)}
+            className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500 font-bold me-6 hover:scale-105 transition-transform uppercase text-xs tracking-widest"
+          >
+            <FaEdit className="text-lg" />
+            {tAdmin('edit_btn')}
+          </button>
+
+          <button
+            onClick={() => setShowConfirm(true)}
+            className="flex items-center gap-2 text-rose-600 dark:text-rose-500 font-bold hover:scale-105 transition-transform uppercase text-xs tracking-widest"
+          >
+            <FaTrash className="text-lg" />
+            {tAdmin('delete_btn')}
+          </button>
         </div>
-        <p className="text-gray-800 mb-2">
-            {comment?.text}
-        </p>
-        {
-            userId && (userId === comment.userId)   &&      
-            <div className="flex justify-end items-center">
-            <FaEdit onClick={() => setOpen(true)} className="text-green-600 text-xl cursor-pointer me-3"/>
-            <FaTrash onClick={commentDeleteHandller} className="text-red-600 text-xl cursor-pointer" />
-        </div>
-        }
-        {
-            open && <UpdateCommentModal setOpen={setOpen} text={comment.text} commentId={comment.id} />
-        }
+      }
+
+      {
+        open && <UpdateCommentModal setOpen={setOpen} text={comment.text} commentId={comment.id} />
+      }
+
+      <ConfirmationModal
+        isOpen={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={commentDeleteHandller}
+        title={t('delete_confirm')}
+        message={t('delete_confirm')}
+        isLoading={isDeleting}
+        confirmText={tAdmin('delete_btn')}
+      />
     </div>
   )
 }

@@ -6,10 +6,6 @@ import bcrypt from "bcryptjs";
 import { updatingProfileSchema } from "@/utils/validationSchemas";
 
 
-interface Props {
-    params: { id: string }
-}
-
 /**
  * @method DELETE
  * @route ~/api/users/profile/:id
@@ -20,7 +16,7 @@ interface Props {
 export async function DELETE(request: NextRequest, context: { params: Promise<{ id: string }> }) {
     const { id } = await context.params;
     try {
-        
+
         const user = await prisma.user.findUnique({
             where: { id: parseInt(id) },
             include: { comments: true }
@@ -61,7 +57,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
  * @access private 
  */
 
-export async function GET(request: NextRequest,  context: { params: Promise<{ id: string }> }) {
+export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
     const { id } = await context.params;
     try {
         const user = await prisma.user.findUnique({
@@ -126,11 +122,22 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
 
         const body = await request.json() as UpdateUserDto
 
-        const validation = updatingProfileSchema.safeParse(body) 
+        const validation = updatingProfileSchema.safeParse(body)
         if (!validation.success) {
-            return NextResponse.json({message: validation.error.issues[0].message}, {status: 400})
+            return NextResponse.json({ message: validation.error.issues[0].message }, { status: 400 })
         }
         if (body.password) {
+
+            if (!body.currentPassword) {
+                return NextResponse.json({ message: "current password is required" }, { status: 400 })
+            }
+
+            const isPasswordMatch = await bcrypt.compare(body.currentPassword, user.password);
+
+            if (!isPasswordMatch) {
+                return NextResponse.json({ message: "invalid current password" }, { status: 400 })
+            }
+
             const salt = await bcrypt.genSalt(10)
             body.password = await bcrypt.hash(body.password, salt)
         }

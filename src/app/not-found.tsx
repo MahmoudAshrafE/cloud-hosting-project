@@ -1,14 +1,26 @@
-import React from 'react'
-import Link from "next/link";
+'use client';
 
-const NotFoundPage = () => {
-  return (
-    <section className='fix-height flex justify-center items-center flex-col min-h-screen '>
-        <h1 className='text-7xl text-gray-800 font-bold'>404</h1>
-        <p className='text-gray-500 text-3xl mt-2 mb-5'>Page Not Found</p>
-        <Link className='text-xl underline text-blue-700 transition-all duration-300' href='/'>Go to home page</Link>
-    </section>
-  )
+export default function GlobalNotFound() {
+    return (
+        <html lang="en">
+            <body style={{
+                margin: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                background: '#020617',
+                color: 'white',
+                fontFamily: 'sans-serif'
+            }}>
+                <div style={{ textAlign: 'center' }}>
+                    <h1 style={{ fontSize: '5rem', margin: 0 }}>404</h1>
+                    <p style={{ fontSize: '1.5rem', opacity: 0.7 }}>Page Not Found</p>
+                    <a href="/" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 'bold' }}>
+                        Return Home
+                    </a>
+                </div>
+            </body>
+        </html>
+    );
 }
-
-export default NotFoundPage

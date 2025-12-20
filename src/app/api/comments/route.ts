@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         if (!user) {
             return NextResponse.json({ message: "only logged in user, access denied" }, { status: 403 })
         }
-        
+
         const body = await request.json() as CreateCommentDto
         const validation = createCommentSchema.safeParse(body)
         if (!validation.success) {
@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
             );
         }
         const article = await prisma.article.findUnique({
-            where: {id: body.articleId}
+            where: { id: body.articleId }
         })
         if (!article) {
-            return NextResponse.json({message: "Article not found"})
+            return NextResponse.json({ message: "Article not found" })
         }
         const newComment = await prisma.comment.create({
             data: {
@@ -61,7 +61,16 @@ export async function GET(request: NextRequest) {
         if (!user || !user.isAdmin) {
             return NextResponse.json({ message: "only Admin, access denied" }, { status: 403 })
         }
-        const comments = await prisma.comment.findMany()
+        const comments = await prisma.comment.findMany({
+            include: {
+                user: {
+                    select: {
+                        username: true
+                    }
+                }
+            },
+            orderBy: { createdAt: 'desc' }
+        });
 
         return NextResponse.json(comments, { status: 200 })
     } catch (error) {

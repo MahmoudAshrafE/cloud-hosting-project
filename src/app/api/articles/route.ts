@@ -20,12 +20,12 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     try {
         const pageNumber = request.nextUrl.searchParams.get("pageNumber") || "1"
-        
 
-        const articles= await prisma.article.findMany({
+
+        const articles = await prisma.article.findMany({
             skip: ARTICLE_PER_PAGE * (parseInt(pageNumber) - 1),
-            take: ARTICLE_PER_PAGE  ,
-            orderBy: {createdAt: 'desc'}
+            take: ARTICLE_PER_PAGE,
+            orderBy: { createdAt: 'desc' }
         });
         return NextResponse.json(articles, { status: 200 });
     } catch (error) {
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     try {
         const user = verifyToken(request)
         if (!user || !user.isAdmin) {
-            return NextResponse.json({message: "Only Admin can create article, acces denied"}, {status: 403})
+            return NextResponse.json({ message: "Only Admin can create article, acces denied" }, { status: 403 })
         }
         const body = (await request.json()) as CreateArticleDto;
 
@@ -61,7 +61,8 @@ export async function POST(request: NextRequest) {
         const newArticle = await prisma.article.create({
             data: {
                 title: body.title,
-                description: body.description
+                description: body.description,
+                image: body.image
             }
         });
 

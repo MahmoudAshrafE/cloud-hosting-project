@@ -14,16 +14,16 @@ import { NextRequest, NextResponse } from "next/server";
  */
 
 
-export async function GET(request: NextRequest,  context: { params: Promise<{ id: string }> } ) {
-        const {id} = await context.params
+export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params
 
     try {
         const article = await prisma.article.findUnique(
             {
-                 where: { id: parseInt(id) },
-                 include: {
+                where: { id: parseInt(id) },
+                include: {
                     comments: {
-                        include:{
+                        include: {
                             user: {
                                 select: {
                                     username: true
@@ -34,8 +34,8 @@ export async function GET(request: NextRequest,  context: { params: Promise<{ id
                             createdAt: 'desc'
                         }
                     }
-                 }
-         },)
+                }
+            },)
 
         if (!article) {
             return NextResponse.json({ message: "article not found" }, { status: 404 })
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest,  context: { params: Promise<{ id
 
 
 export async function PUT(request: NextRequest, context: { params: Promise<{ id: string }> }) {
-        const {id} = await context.params
+    const { id } = await context.params
 
     try {
         const user = verifyToken(request)
@@ -90,7 +90,8 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
             where: { id: parseInt(id) },
             data: {
                 title: body.title,
-                description: body.description
+                description: body.description,
+                image: body.image
             }
         })
 
@@ -112,7 +113,7 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
 
 
 export async function DELETE(request: NextRequest, context: { params: Promise<{ id: string }> }) {
-        const {id} = await context.params
+    const { id } = await context.params
 
     try {
         const user = verifyToken(request)
@@ -122,7 +123,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
         const article = await prisma.article.findUnique(
             {
                 where: { id: parseInt(id) },
-                include: {comments: true}
+                include: { comments: true }
             }
         )
 
@@ -136,7 +137,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
         const commentIds = article.comments?.map(comment => comment.id)
 
         await prisma.comment.deleteMany({
-            where: {id: {in: commentIds}}
+            where: { id: { in: commentIds } }
         })
 
         return NextResponse.json({ message: "article deleted" }, { status: 200 })

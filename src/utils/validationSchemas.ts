@@ -8,7 +8,8 @@ export const createArticleSkhema = z.object({
         .min(2, "title must be more than 2 characters")
         .max(200, "title must be less than 200 characters"),
 
-    description: z.string().min(10, "title must be more than 10 characters")
+    description: z.string().min(10, "title must be more than 10 characters"),
+    image: z.string().optional(),
 })
 
 // Register Schema
@@ -23,6 +24,7 @@ export const updatingProfileSchema = z.object({
     username: z.string().min(3).max(200).optional(),
     email: z.string().min(3).max(200).email().optional(),
     password: z.string().min(6).optional(),
+    currentPassword: z.string().min(6).optional(),
 })
 
 // Login Schema
