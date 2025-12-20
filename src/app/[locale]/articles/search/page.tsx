@@ -25,7 +25,7 @@ const SearchArticlePage = async ({ searchParams }: SearchArticleProps) => {
             </div>
             <h2 className="text-gray-900 dark:text-white text-3xl md:text-5xl font-black text-center tracking-tighter uppercase leading-tight">
               {t('articles_based_on')} <br />
-              <span className="text-red-600 dark:text-red-400">"{searchText}"</span> <br />
+              <span className="text-red-600 dark:text-red-400">{searchText}</span> <br />
               {t('no_articles_found')}
             </h2>
             <p className="mt-8 text-gray-500 dark:text-slate-400 text-xl font-medium italic">

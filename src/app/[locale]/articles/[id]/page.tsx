@@ -1,7 +1,6 @@
 import { getSingleArticle } from "@/utils/data-access/articles";
 import AddcommentForm from "@/components/comments/AddCommentForm";
 import CommentItem from "@/components/comments/CommentItem";
-import { SingleArticle } from "@/utils/types";
 import { verifyTokenBerPage } from "@/utils/verifyToken";
 import { cookies } from "next/headers";
 import { getTranslations } from 'next-intl/server';

@@ -3,7 +3,7 @@ import ButtonSpiner from '@/components/ButtonSpiner'
 import { Article } from '@/generated/prisma/client'
 import { DOMAIN } from '@/utils/constants'
 import axios, { AxiosError } from 'axios'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 

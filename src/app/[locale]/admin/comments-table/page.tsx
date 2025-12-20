@@ -58,7 +58,7 @@ const adminCommentTable = async () => {
                       </div>
                     </td>
                     <td className='p-8 max-w-md'>
-                      <span className='text-lg font-bold text-gray-500 dark:text-slate-400 line-clamp-2 leading-relaxed italic'>"{comment.text}"</span>
+                      <span className='text-lg font-bold text-gray-500 dark:text-slate-400 line-clamp-2 leading-relaxed italic'>{comment.text}</span>
                     </td>
                     <td className='hidden lg:table-cell p-8'>
                       <span className='text-gray-400 dark:text-gray-500 font-bold text-sm tracking-tighter'>{new Date(comment.createdAt).toLocaleDateString()}</span>

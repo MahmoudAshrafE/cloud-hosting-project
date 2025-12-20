@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useTranslations } from 'next-intl';
 
 interface ChangePasswordProps {
     userId: number;
+}
+interface ApiError {
+    message: string;
 }
 
 const ChangePasswordForm = ({ userId }: ChangePasswordProps) => {
@@ -42,8 +45,9 @@ const ChangePasswordForm = ({ userId }: ChangePasswordProps) => {
             setNewPassword("");
             setConfirmPassword("");
             router.refresh();
-        } catch (error: any) {
-            toast.error(error.response?.data?.message || "Something went wrong");
+        } catch (error: unknown) {
+            const err = error as AxiosError<ApiError>;
+            toast.error(err.response?.data?.message || "Something went wrong");
         } finally {
             setLoading(false);
         }

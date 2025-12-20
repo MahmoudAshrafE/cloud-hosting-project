@@ -10,7 +10,7 @@ const AboutPage = async () => {
             {t('title')}
           </h1>
           <p className="text-slate-400 text-xl md:text-2xl leading-relaxed italic max-w-2xl m-auto">
-            "{t('desc')}"
+            {t('desc')}
           </p>
         </div>
 
