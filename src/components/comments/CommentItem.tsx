@@ -6,7 +6,7 @@ import UpdateCommentModal from "./UpdateCommentModal"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import axios, { AxiosError } from "axios"
-import { DOMAIN } from "@/utils/constants"
+
 import { useRouter } from "next/navigation"
 import { useTranslations } from 'next-intl';
 
@@ -27,7 +27,7 @@ const CommentItem = ({ comment, userId }: CommentItemProps) => {
   const commentDeleteHandller = async () => {
     setIsDeleting(true)
     try {
-      await axios.delete(`${DOMAIN}/api/comments/${comment.id}`);
+      await axios.delete(`/api/comments/${comment.id}`);
       router.refresh();
       toast.success(t('delete_success'));
       setShowConfirm(false)
