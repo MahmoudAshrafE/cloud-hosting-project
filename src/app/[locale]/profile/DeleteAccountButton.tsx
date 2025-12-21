@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import { DOMAIN } from '@/utils/constants';
+
 import ConfirmationModal from '@/components/ConfirmationModal';
 import { useTranslations } from 'next-intl';
 

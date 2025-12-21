@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { FiSearch, FiFileText, FiLoader } from 'react-icons/fi';
 import Modal from "../Modal";
 import axios from "axios";
-import { DOMAIN } from "@/utils/constants";
+
 import { Article } from "@/generated/prisma/client";
 
 const SearchArticleInput = () => {

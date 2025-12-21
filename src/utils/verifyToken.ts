@@ -13,7 +13,7 @@ export function verifyToken(request: NextRequest): JWTPAYLOAD | null {
         const userPayload = jwt.verify(authToken, process.env.JWT_SECRET as string) as JWTPAYLOAD
         return userPayload;
 
-    } catch (error) {
+    } catch {
         return null
     }
 }
@@ -27,7 +27,7 @@ export function verifyTokenBerPage(token: string): JWTPAYLOAD | null {
         }
         return userPayload;
 
-    } catch (error) {
+    } catch {
         return null
     }
 }
