@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from 'next-intl';
 
 interface ChangePasswordProps {
@@ -54,8 +54,7 @@ const ChangePasswordForm = ({ userId }: ChangePasswordProps) => {
     };
 
     return (
-        <div className="w-full mt-8 pt-8 border-t border-gray-100 dark:border-slate-700">
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 uppercase tracking-wider">{t('change_password_title')}</h3>
+        <div className="w-full">
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <input
                     type="password"

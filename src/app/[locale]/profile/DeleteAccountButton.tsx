@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
@@ -19,17 +19,13 @@ const DeleteAccountButton = ({ userId }: DeleteAccountButtonProps) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
     const deleteAccountHandler = async () => {
-        setIsDeleting(true);
         try {
+            setIsDeleting(true);
             await axios.delete(`/api/users/${userId}`);
-
-            // Clear the token - using the logout endpoint or just client side
             await axios.get(`/api/users/logout`);
 
             toast.success(t('success_delete'));
-
-            // Redirect to home
-            router.push('/');
+            router.replace('/');
             router.refresh();
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;

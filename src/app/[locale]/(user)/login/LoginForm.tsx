@@ -3,8 +3,7 @@
 import ButtonSpiner from "@/components/ButtonSpiner"
 
 import axios, { AxiosError } from "axios"
-import { useRouter } from "next/navigation"
-import { Link } from "@/i18n/navigation"
+import { Link, useRouter } from "@/i18n/navigation"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { useTranslations } from 'next-intl';
@@ -20,29 +19,22 @@ const LoginForm = () => {
 
     const formSubmitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true)
-        if (email === '') {
-            setLoading(false)
-            return toast.error(t('email_required'))
-        }
-        if (password === '') {
-            setLoading(false)
-            return toast.error(t('password_required'))
-        }
+
+        if (email === '') return toast.error(t('email_required'));
+        if (password === '') return toast.error(t('password_required'));
 
         try {
-            setLoading(true)
-            await axios.post(`/api/users/login`, { email, password })
-            router.replace('/')
-            setLoading(false)
-            router.refresh()
+            setLoading(true);
+            const { data } = await axios.post(`/api/users/login`, { email, password });
+            toast.success(data.message || "Welcome back!");
+            router.replace('/');
+            router.refresh();
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
-            // Using a fallback for error message or a generic one from translations if available
             toast.error(error.response?.data?.message || "Something went wrong");
+        } finally {
             setLoading(false);
         }
-
     }
     return (
         <form onSubmit={formSubmitHandler} className="flex flex-col">

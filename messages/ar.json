@@ -7,6 +7,7 @@
         "login": "تسجيل الدخول",
         "register": "إنشاء حساب",
         "logout": "تسجيل الخروج",
+        "loading": "جاري...",
         "logo_cloud": "استضافة",
         "logo_hosting": "السحابة"
     },
@@ -66,6 +67,7 @@
         "email_placeholder": "أدخل بريدك الإلكتروني",
         "password_placeholder": "أدخل كلمة المرور",
         "username_placeholder": "أدخل اسم المستخدم",
+        "email_label": "عنوان البريد الإلكتروني",
         "login_btn": "دخول",
         "register_btn": "تسجيل",
         "forgot_password": "نسيت كلمة المرور؟",
@@ -74,9 +76,15 @@
         "forgot_password_title": "نسيت كلمة المرور؟",
         "forgot_password_desc": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور الخاصة بك.",
         "reset_password_btn": "إعادة تعيين كلمة المرور",
+        "reset_password_for": "إعادة تعيين كلمة المرور لـ <email_tag>{email}</email_tag>",
         "username_required": "اسم المستخدم مطلوب",
         "email_required": "البريد الإلكتروني مطلوب",
-        "password_required": "كلمة المرور مطلوبة"
+        "password_required": "كلمة المرور مطلوبة",
+        "processing": "جاري التحميل...",
+        "resetting": "جاري التعيين...",
+        "check_email_title": "افحص بريدك الإلكتروني",
+        "check_email_desc": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى <email_tag>{email}</email_tag>. يرجى التحقق من صندوق الوارد الخاص بك.",
+        "didnt_receive_email": "لم يصلك البريد؟ حاول مرة أخرى"
     },
     "AboutPage": {
         "title": "عن استضافة السحابة",

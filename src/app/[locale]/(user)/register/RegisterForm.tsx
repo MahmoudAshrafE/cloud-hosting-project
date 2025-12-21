@@ -3,7 +3,7 @@
 import ButtonSpiner from "@/components/ButtonSpiner"
 
 import axios, { AxiosError } from "axios"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { useTranslations } from 'next-intl';
@@ -19,25 +19,20 @@ const RegisterForm = () => {
     const formSubmitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (username === '') {
-            return toast.error(t('username_required'))
-        }
-        if (email === '') {
-            return toast.error(t('email_required'))
-        }
-        if (password === '') {
-            return toast.error(t('password_required'))
-        }
+        if (username === '') return toast.error(t('username_required'));
+        if (email === '') return toast.error(t('email_required'));
+        if (password === '') return toast.error(t('password_required'));
 
         try {
             setLoading(true)
-            await axios.post(`/api/users/register`, { username, email, password })
+            const { data } = await axios.post(`/api/users/register`, { username, email, password })
+            toast.success(data.message || "Account created successfully!");
             router.replace('/')
-            setLoading(false)
             router.refresh()
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
             toast.error(error.response?.data?.message || "Something went wrong");
+        } finally {
             setLoading(false);
         }
     }
