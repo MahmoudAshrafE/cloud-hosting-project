@@ -1,4 +1,5 @@
-import { getAllComments, CommentWithUser } from '@/apiCalls/adminApiCall';
+import { getAllComments } from '@/apiCalls/adminApiCall';
+import { CommentWithUser } from '@/utils/types';
 import { verifyTokenBerPage } from '@/utils/verifyToken';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
