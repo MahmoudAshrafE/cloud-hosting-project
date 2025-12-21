@@ -1,11 +1,7 @@
 import { Comment } from "@/generated/prisma/client";
 import { DOMAIN } from "@/utils/constants";
 
-export type CommentWithUser = Comment & {
-  user: {
-    username: string;
-  }
-}
+import { CommentWithUser } from "@/utils/types";
 
 // Get All Comment
 export async function getAllComments(token: string): Promise<CommentWithUser[]> {
