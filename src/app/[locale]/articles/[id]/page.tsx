@@ -12,6 +12,7 @@ const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) =
   const token = (await cookies()).get("jwtToken")?.value || ""
   const payload = verifyTokenBerPage(token)
   const t = await getTranslations('ArticleDetails');
+  const tAdmin = await getTranslations('Admin');
 
   const article = await getSingleArticle(id);
   if (!article) {
@@ -30,7 +31,17 @@ const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) =
           <div className="flex items-start justify-between gap-4 mb-3">
             <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white leading-tight flex-1">{article?.title}</h1>
             {payload?.isAdmin && (
-              <ArticleActionMenu articleId={article.id} />
+              <ArticleActionMenu
+                articleId={article.id}
+                text={{
+                  edit: tAdmin('edit_btn'),
+                  delete: tAdmin('delete_btn'),
+                  deleteConfirmTitle: tAdmin('delete_confirm_article'),
+                  deleteConfirmMessage: tAdmin('delete_confirm_article'),
+                  articleDeleted: tAdmin('article_deleted'),
+                  error: tAdmin('error_occurred')
+                }}
+              />
             )}
           </div>
           <div className="text-gray-500 dark:text-gray-400 font-medium mb-6">

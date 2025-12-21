@@ -11,15 +11,22 @@ import ConfirmationModal from '@/components/ConfirmationModal'
 
 interface ArticleActionMenuProps {
     articleId: number;
+    text: {
+        edit: string;
+        delete: string;
+        deleteConfirmTitle: string;
+        deleteConfirmMessage: string;
+        articleDeleted: string;
+        error: string;
+    }
 }
 
-const ArticleActionMenu = ({ articleId }: ArticleActionMenuProps) => {
+const ArticleActionMenu = ({ articleId, text }: ArticleActionMenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
-    const t = useTranslations('Admin');
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -41,11 +48,11 @@ const ArticleActionMenu = ({ articleId }: ArticleActionMenuProps) => {
             await axios.delete(`/api/articles/${articleId}`);
             router.push('/articles/search?searchText='); // Redirect to articles list or home
             router.refresh();
-            toast.success(t('article_deleted'));
+            toast.success(text.articleDeleted);
             setShowConfirm(false);
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
-            toast.error(error.response?.data?.message || t('error_occurred'));
+            toast.error(error.response?.data?.message || text.error);
         } finally {
             setIsDeleting(false);
         }
@@ -71,7 +78,7 @@ const ArticleActionMenu = ({ articleId }: ArticleActionMenuProps) => {
                                 onClick={() => setIsOpen(false)}
                             >
                                 <BsPencil className="text-blue-500 text-lg" />
-                                {t('edit_btn')}
+                                {text.edit}
                             </Link>
                         </li>
                         <li>
@@ -83,7 +90,7 @@ const ArticleActionMenu = ({ articleId }: ArticleActionMenuProps) => {
                                 className="w-full flex items-center gap-3 px-6 py-3 text-sm font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/10 transition-colors"
                             >
                                 <BsTrash className="text-lg" />
-                                {t('delete_btn')}
+                                {text.delete}
                             </button>
                         </li>
                     </ul>
@@ -94,10 +101,10 @@ const ArticleActionMenu = ({ articleId }: ArticleActionMenuProps) => {
                 isOpen={showConfirm}
                 onClose={() => setShowConfirm(false)}
                 onConfirm={deleteArticleHandler}
-                title={t('delete_confirm_article')}
-                message={t('delete_confirm_article')}
+                title={text.deleteConfirmTitle}
+                message={text.deleteConfirmMessage}
                 isLoading={isDeleting}
-                confirmText={t('delete_btn')}
+                confirmText={text.delete}
             />
         </div>
     )
