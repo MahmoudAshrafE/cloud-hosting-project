@@ -57,7 +57,6 @@ const ForgotPasswordForm = () => {
 
                 {/* Developer / Testing Link */}
                 <div className="mt-10 pt-6 border-t border-gray-100 dark:border-slate-800/50">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Developer Preview</p>
                     <Link
                         href={`/reset-password?email=${email}`}
                         className="inline-flex items-center gap-2 px-4 py-2 bg-rose-500/10 text-rose-500 rounded-full text-xs font-black uppercase tracking-widest hover:bg-rose-500 hover:text-white transition-all border border-rose-500/20"
