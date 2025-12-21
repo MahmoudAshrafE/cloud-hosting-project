@@ -4,6 +4,7 @@ import CommentItem from "@/components/comments/CommentItem";
 import { verifyTokenBerPage } from "@/utils/verifyToken";
 import { cookies } from "next/headers";
 import { getTranslations } from 'next-intl/server';
+import ArticleActionMenu from "@/components/articles/ArticleActionMenu";
 
 
 const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) => {
@@ -26,7 +27,12 @@ const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) =
     <section className="fix-height bg-white dark:bg-slate-950 transition-colors pb-20">
       <div className="container m-auto w-full px-5 py-8 md:w-2/3">
         <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg mb-10 border border-gray-100 dark:border-slate-700 transition-colors">
-          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 leading-tight">{article?.title}</h1>
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white leading-tight flex-1">{article?.title}</h1>
+            {payload?.isAdmin && (
+              <ArticleActionMenu articleId={article.id} />
+            )}
+          </div>
           <div className="text-gray-500 dark:text-gray-400 font-medium mb-6">
             {new Date(article.createdAt).toDateString()}
           </div>
