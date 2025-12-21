@@ -10,11 +10,11 @@ import { NextRequest, NextResponse } from "next/server";
  */
 
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         (await cookies()).delete('jwtToken')
-        return NextResponse.json({message: "logout"}, {status: 200 })
-    } catch (error) {
+        return NextResponse.json({ message: "logout" }, { status: 200 })
+    } catch {
         return NextResponse.json(
             { message: 'internal server error' }, { status: 500 }
         )

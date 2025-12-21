@@ -4,15 +4,15 @@ import ResetPasswordForm from './ResetPasswordForm';
 import { redirect } from '@/i18n/navigation';
 
 interface Props {
-    searchParams: { email?: string };
+    searchParams: Promise<{ email?: string }>;
 }
 
 const ResetPasswordPage = async ({ searchParams }: Props) => {
     const t = await getTranslations('Auth');
-    const email = searchParams?.email;
+    const { email } = await searchParams;
 
     if (!email) {
-        // @ts-ignore
+        // @ts-expect-error: redirect from next-intl might have strict type requirements for the href
         redirect('/login');
     }
 
