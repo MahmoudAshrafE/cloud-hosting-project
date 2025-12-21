@@ -27,7 +27,7 @@ const SearchArticleInput = () => {
 
             try {
                 setIsLoading(true);
-                const { data } = await axios.get(`${DOMAIN}/api/articles/search?textSearch=${searchText}`);
+                const { data } = await axios.get(`/api/articles/search?textSearch=${searchText}`);
                 setResults(data);
                 if (data.length > 0) {
                     setIsModalOpen(true);

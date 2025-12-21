@@ -32,7 +32,7 @@ const LoginForm = () => {
 
         try {
             setLoading(true)
-            await axios.post(`${DOMAIN}/api/users/login`, { email, password })
+            await axios.post(`/api/users/login`, { email, password })
             router.replace('/')
             setLoading(false)
             router.refresh()

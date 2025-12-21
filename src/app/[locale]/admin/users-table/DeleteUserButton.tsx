@@ -22,7 +22,7 @@ const DeleteUserButton = ({ userId }: DeleteUserButtonProps) => {
     const deleteUserHandler = async () => {
         setIsDeleting(true);
         try {
-            await axios.delete(`${DOMAIN}/api/users/${userId}`);
+            await axios.delete(`/api/users/${userId}`);
             router.refresh();
             toast.success(t('user_deleted'));
             setShowConfirm(false);

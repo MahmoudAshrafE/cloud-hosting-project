@@ -22,7 +22,7 @@ const DeleteCommentButton = ({ commentId }: DeleteCommentButtonProps) => {
     const deleteCommentHandler = async () => {
         setIsDeleting(true);
         try {
-            await axios.delete(`${DOMAIN}/api/comments/${commentId}`);
+            await axios.delete(`/api/comments/${commentId}`);
             router.refresh();
             toast.success(t('comment_deleted'));
             setShowConfirm(false);

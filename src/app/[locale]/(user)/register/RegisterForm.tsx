@@ -31,7 +31,7 @@ const RegisterForm = () => {
 
         try {
             setLoading(true)
-            await axios.post(`${DOMAIN}/api/users/register`, { username, email, password })
+            await axios.post(`/api/users/register`, { username, email, password })
             router.replace('/')
             setLoading(false)
             router.refresh()

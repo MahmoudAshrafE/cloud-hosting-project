@@ -27,7 +27,7 @@ const AddArticleForm = () => {
 
         try {
             setLoading(true)
-            await axios.post(`${DOMAIN}/api/articles`, { title, description, image })
+            await axios.post(`/api/articles`, { title, description, image })
             setLoading(false)
             setTitle("")
             setDescription("")

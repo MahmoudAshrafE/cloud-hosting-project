@@ -21,10 +21,10 @@ const DeleteAccountButton = ({ userId }: DeleteAccountButtonProps) => {
     const deleteAccountHandler = async () => {
         setIsDeleting(true);
         try {
-            await axios.delete(`${DOMAIN}/api/users/${userId}`);
+            await axios.delete(`/api/users/${userId}`);
 
             // Clear the token - using the logout endpoint or just client side
-            await axios.get(`${DOMAIN}/api/users/logout`);
+            await axios.get(`/api/users/logout`);
 
             toast.success(t('success_delete'));
 

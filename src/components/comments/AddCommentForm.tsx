@@ -25,7 +25,7 @@ const AddcommentForm = ({ articleId }: AddCommentProps) => {
 
         try {
             setLoading(true)
-            await axios.post(`${DOMAIN}/api/comments`, { text, articleId })
+            await axios.post(`/api/comments`, { text, articleId })
             setLoading(false)
             toast.success(t('comment_added_success'))
             router.refresh()

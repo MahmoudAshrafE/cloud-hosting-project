@@ -30,7 +30,7 @@ const UpdateCommentModal = ({ setOpen, text, commentId }: UpdateCommentModalProp
 
         try {
             setLoading(true)
-            await axios.put(`${DOMAIN}/api/comments/${commentId}`, { text: updatedText })
+            await axios.put(`/api/comments/${commentId}`, { text: updatedText })
             setLoading(false)
             router.refresh()
             setUpdatedText("")

@@ -12,7 +12,7 @@ export default function ButtonLogout() {
 
   const handleLogout = async () => {
     try {
-      await axios.get(`${DOMAIN}/api/users/logout`)
+      await axios.get(`/api/users/logout`)
       router.push("/");
       router.refresh()
     } catch (err) {

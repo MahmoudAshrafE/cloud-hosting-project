@@ -32,7 +32,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
 
         try {
             setLoading(true)
-            await axios.put(`${DOMAIN}/api/articles/${article.id}`, { title, description, image })
+            await axios.put(`/api/articles/${article.id}`, { title, description, image })
             router.push('/admin/articles-table?pageNumber=1')
             toast.success(t('article_updated'))
             router.refresh()
