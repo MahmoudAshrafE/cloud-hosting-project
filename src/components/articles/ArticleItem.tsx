@@ -11,12 +11,12 @@ interface ArticleItemProps {
 const ArticleItem = ({ article }: ArticleItemProps) => {
     const t = useTranslations('ArticlesPage');
     return (
-        <div className="group p-8 rounded-[2.5rem] my-4 shadow-sm hover:shadow-2xl border border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-700 w-full flex flex-col justify-between overflow-hidden relative" key={article.id}>
+        <div className="group p-6 md:p-8 rounded-3xl md:rounded-[2.5rem] my-4 shadow-sm hover:shadow-2xl border border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-700 w-full flex flex-col justify-between overflow-hidden relative" key={article.id}>
             {/* Hover decorative element - Dark mode only */}
             <div className="hidden dark:block absolute -right-4 -top-4 w-24 h-24 bg-blue-500/5 dark:bg-blue-400/5 blur-2xl rounded-full group-hover:bg-blue-500/10 transition-colors"></div>
 
             <div className="relative z-10 h-full flex flex-col">
-                <div className="relative overflow-hidden rounded-2xl mb-8 group-hover:shadow-xl transition-all duration-500 bg-gray-50 dark:bg-slate-800 aspect-[16/10]">
+                <div className="relative overflow-hidden rounded-2xl mb-6 md:mb-8 group-hover:shadow-xl transition-all duration-500 bg-gray-50 dark:bg-slate-800 aspect-[16/10]">
                     {(article.image && (article.image.startsWith('/') || article.image.startsWith('http'))) ? (
                         <Image
                             src={article.image}
@@ -26,11 +26,11 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
                         />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-300 dark:text-slate-700">
-                            <IoCloudCircle className="text-8xl" />
+                            <IoCloudCircle className="text-6xl md:text-8xl" />
                         </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                        <span className="text-white font-black text-sm uppercase tracking-widest">{t('new_badge')}</span>
+                        <span className="text-white font-black text-xs md:text-sm uppercase tracking-widest">{t('new_badge')}</span>
                     </div>
                 </div>
 
@@ -44,10 +44,10 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
                             {Math.max(1, Math.round(article.description.length / 100))} {t('reading_time')}
                         </span>
                     </div>
-                    <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4 line-clamp-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors tracking-tight uppercase">
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900 dark:text-white mb-4 line-clamp-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors tracking-tight uppercase">
                         {article.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 font-bold mb-8 line-clamp-3 leading-relaxed text-lg italic">
+                    <p className="text-gray-600 dark:text-gray-400 font-bold mb-6 md:mb-8 line-clamp-3 leading-relaxed text-base md:text-lg italic">
                         {article.description}
                     </p>
                 </div>

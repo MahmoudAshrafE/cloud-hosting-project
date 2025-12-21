@@ -3,9 +3,12 @@ import Skeleton from "@/components/Skeleton";
 const AdminArticlesLoading = () => {
     return (
         <section className='flex flex-col gap-10'>
-            <div className="flex items-center justify-between">
-                <Skeleton className="h-10 w-48" />
-                <Skeleton className="h-10 w-64 rounded-full" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-2">
+                    <Skeleton className="h-12 w-64" />
+                    <Skeleton className="h-6 w-48" />
+                </div>
+                <Skeleton className="h-[72px] w-32 rounded-2xl" />
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-xl overflow-hidden">

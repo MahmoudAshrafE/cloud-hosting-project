@@ -10,6 +10,7 @@ import { getTranslations } from 'next-intl/server';
 const adminCommentTable = async () => {
   const token = (await cookies()).get("jwtToken")?.value;
   const t = await getTranslations('Table');
+  const tAdmin = await getTranslations('Admin');
 
   if (!token) {
     redirect("/");
@@ -25,11 +26,16 @@ const adminCommentTable = async () => {
   const comments: CommentWithUser[] = await getAllComments(token)
   return (
     <section className='flex flex-col gap-10'>
-      <div className="flex items-center justify-between">
-        <h1 className='text-4xl font-black text-gray-900 dark:text-white tracking-tighter uppercase'>{t('comments_title')}</h1>
-        <div className="flex items-center gap-3 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/20 rounded-full border border-emerald-100 dark:border-emerald-800/50">
-          <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">Total: {comments.length}</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className='text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter uppercase mb-2'>{t('comments_title')}</h1>
+          <p className="text-slate-400 font-medium text-lg">
+            {tAdmin('admin_management')}
+          </p>
+        </div>
+        <div className="bg-white dark:bg-slate-900 px-6 py-3 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-xl">
+          <span className="text-slate-500 font-bold uppercase text-[10px] tracking-widest block mb-1">{t('comments_title')}</span>
+          <span className="text-3xl font-black text-blue-500 tracking-tighter">{comments.length}</span>
         </div>
       </div>
 

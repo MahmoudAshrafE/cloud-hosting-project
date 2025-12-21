@@ -29,11 +29,16 @@ const adminArticleTable = async ({ searchParams }: AdminArticleTableProps) => {
 
   return (
     <section className='flex flex-col gap-10'>
-      <div className="flex items-center justify-between">
-        <h1 className='text-4xl font-black text-gray-900 dark:text-white tracking-tighter uppercase'>{t('articles_title')}</h1>
-        <div className="hidden md:flex items-center gap-3 px-6 py-2 bg-blue-50 dark:bg-blue-900/20 rounded-full border border-blue-100 dark:border-blue-800/50">
-          <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-          <span className="text-sm font-bold text-blue-700 dark:text-blue-300">{tAdmin('admin_management')}</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className='text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter uppercase mb-2'>{t('articles_title')}</h1>
+          <p className="text-slate-400 font-medium text-lg">
+            {tAdmin('admin_management')}
+          </p>
+        </div>
+        <div className="bg-white dark:bg-slate-900 px-6 py-3 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-xl">
+          <span className="text-slate-500 font-bold uppercase text-[10px] tracking-widest block mb-1">{t('articles_title')}</span>
+          <span className="text-3xl font-black text-blue-500 tracking-tighter">{count}</span>
         </div>
       </div>
 

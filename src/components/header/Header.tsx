@@ -16,7 +16,7 @@ const Header = async () => {
 
   return (
     <header className="sticky top-0 h-24 flex items-center justify-between px-6 lg:px-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-gray-200 dark:border-slate-800 shadow-sm z-50 transition-all duration-500">
-      <Navbar isAdmin={payload?.isAdmin} isLoggedIn={!!payload} translations={{
+      <Navbar isAdmin={payload?.isAdmin} isLoggedIn={!!payload} payload={payload} translations={{
         logo_cloud: t('logo_cloud'),
         logo_hosting: t('logo_hosting'),
         home: t('home'),
@@ -26,7 +26,7 @@ const Header = async () => {
         login: t('login'),
         register: t('register')
       }} />
-      <div className="flex items-center gap-3 lg:gap-8">
+      <div className="hidden md:flex items-center gap-3 lg:gap-8">
         <div className="flex items-center gap-2 lg:gap-4 pr-3 lg:pr-6 border-r border-gray-200 dark:border-slate-800">
           <ThemeToggle />
           <LanguageSwitcher />

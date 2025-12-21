@@ -39,10 +39,10 @@ const AddcommentForm = ({ articleId }: AddCommentProps) => {
     return (
         <form onSubmit={formSubmitHandler} className="mb-10 group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] blur opacity-25 group-focus-within:opacity-50 transition duration-1000 group-focus-within:duration-200"></div>
-            <div className="relative flex flex-col md:flex-row gap-4 bg-white dark:bg-slate-900/80 backdrop-blur-xl p-3 rounded-[2.2rem] border border-gray-100 dark:border-slate-800 shadow-2xl">
+            <div className="relative flex flex-col md:flex-row gap-3 md:gap-4 bg-white dark:bg-slate-900/80 backdrop-blur-xl p-2 md:p-3 rounded-3xl md:rounded-[2.2rem] border border-gray-100 dark:border-slate-800 shadow-2xl">
                 <input
                     type="text"
-                    className="flex-1 rounded-2xl md:rounded-[1.8rem] text-lg lg:text-xl p-5 w-full bg-gray-50 dark:bg-slate-800/50 text-gray-900 dark:text-white border border-transparent focus:border-blue-500/50 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium"
+                    className="flex-1 rounded-2xl md:rounded-[1.8rem] text-base md:text-lg lg:text-xl p-4 md:p-5 w-full bg-gray-50 dark:bg-slate-800/50 text-gray-900 dark:text-white border border-transparent focus:border-blue-500/50 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium"
                     placeholder={t('placeholder')}
                     value={text}
                     onChange={(e) => setText(e.target.value)}
@@ -50,7 +50,7 @@ const AddcommentForm = ({ articleId }: AddCommentProps) => {
                 <button
                     disabled={loading}
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl md:rounded-[1.8rem] text-lg font-black transition-all shadow-xl shadow-blue-500/20 active:scale-95 disabled:opacity-70 disabled:pointer-events-none uppercase tracking-widest min-w-[180px]"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 md:px-10 md:py-5 rounded-2xl md:rounded-[1.8rem] text-base md:text-lg font-black transition-all shadow-xl shadow-blue-500/20 active:scale-95 disabled:opacity-70 disabled:pointer-events-none uppercase tracking-widest md:min-w-[180px]"
                 >
                     {
                         loading ?

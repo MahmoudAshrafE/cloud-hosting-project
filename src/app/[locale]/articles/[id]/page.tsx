@@ -26,10 +26,10 @@ const SingleArticlePage = async (context: { params: Promise<{ id: string }> }) =
 
   return (
     <section className="fix-height bg-white dark:bg-slate-950 transition-colors pb-20">
-      <div className="container m-auto w-full px-5 py-8 md:w-2/3">
-        <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg mb-10 border border-gray-100 dark:border-slate-700 transition-colors">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white leading-tight flex-1">{article?.title}</h1>
+      <div className="container m-auto w-full px-4 py-8 md:w-5/6 lg:w-2/3">
+        <div className="bg-white dark:bg-slate-800 p-6 md:p-10 lg:p-12 rounded-3xl md:rounded-[2.5rem] shadow-lg mb-10 border border-gray-100 dark:border-slate-700 transition-colors">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-tight flex-1 tracking-tight">{article?.title}</h1>
             {payload?.isAdmin && (
               <ArticleActionMenu
                 articleId={article.id}

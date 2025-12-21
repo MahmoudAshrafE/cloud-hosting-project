@@ -7,7 +7,11 @@ import { MdOutlineArticle } from 'react-icons/md'
 import { FiUsers } from 'react-icons/fi'
 import { useTranslations } from 'next-intl';
 
-const AdminSidebar = () => {
+interface AdminSidebarProps {
+  onClose?: () => void;
+}
+
+const AdminSidebar = ({ onClose }: AdminSidebarProps) => {
   const t = useTranslations('Admin');
   const pathname = usePathname();
 
@@ -24,7 +28,7 @@ const AdminSidebar = () => {
         <div className='bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-500/20'>
           <CgMenuGridR className='text-3xl text-white' />
         </div>
-        <span className='hidden lg:block ml-3 text-xl font-black text-gray-900 dark:text-white uppercase tracking-tighter'>
+        <span className='ms-3 text-lg md:text-xl font-black text-gray-900 dark:text-white uppercase tracking-tighter'>
           {t('admin_panel')}
         </span>
       </div>
@@ -37,6 +41,7 @@ const AdminSidebar = () => {
             <li key={link.href}>
               <Link
                 href={link.href}
+                onClick={onClose}
                 className={`flex items-center gap-3 p-4 rounded-2xl transition-all duration-300 group
                   ${isActive
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
@@ -46,7 +51,7 @@ const AdminSidebar = () => {
                 <span className={`text-2xl transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400'}`}>
                   {link.icon}
                 </span>
-                <span className='hidden lg:block font-bold truncate'>
+                <span className='font-black uppercase tracking-widest text-[11px] md:text-sm truncate'>
                   {link.label}
                 </span>
               </Link>
