@@ -10,7 +10,7 @@ export async function getArticles(pageNumber: string | undefined): Promise<Artic
     const articles = await prisma.article.findMany({
         skip: ARTICLE_PER_PAGE * (page - 1),
         take: ARTICLE_PER_PAGE,
-        orderBy: { createdAt: 'desc' }
+        orderBy: { updatedAt: 'desc' }
     });
     return articles;
 }
