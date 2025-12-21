@@ -1,4 +1,4 @@
-import { Article, Comment, User } from "@/generated/prisma/client"
+import { Article, Comment } from "@prisma/client"
 
 export type JWTPAYLOAD = {
     id: number,

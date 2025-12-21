@@ -40,26 +40,26 @@ export async function POST(request: NextRequest) {
             },
             select: {
                 username: true,
-                email:true,
+                email: true,
                 id: true,
                 isAdmin: true,
             }
         });
         const tokenPayload = {
             id: newUser.id,
-            email:newUser.email,
+            email: newUser.email,
             isAdmin: newUser.isAdmin,
             username: newUser.username,
         }
 
         const cookie = setCookie(tokenPayload)
 
-        return NextResponse.json({...newUser, message: "Registered and Authenticated"}, { 
+        return NextResponse.json({ ...newUser, message: "Registered and Authenticated" }, {
             status: 201,
-            headers: {"Set-Cookie": cookie},             
+            headers: { "Set-Cookie": cookie },
         })
 
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json(
             { message: 'internal server error' }, { status: 500 }
         )

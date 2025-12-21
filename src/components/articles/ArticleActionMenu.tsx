@@ -6,7 +6,6 @@ import Link from 'next/link'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { useTranslations } from 'next-intl';
 import ConfirmationModal from '@/components/ConfirmationModal'
 
 interface ArticleActionMenuProps {

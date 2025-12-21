@@ -6,7 +6,7 @@ import { BsMoonStars, BsSun } from 'react-icons/bs'
 
 export default function ThemeToggle() {
     const [mounted, setMounted] = useState(false)
-    const { theme, setTheme, resolvedTheme } = useTheme()
+    const { setTheme, resolvedTheme } = useTheme()
 
     useEffect(() => setMounted(true), [])
 
