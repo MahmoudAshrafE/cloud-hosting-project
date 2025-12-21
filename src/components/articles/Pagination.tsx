@@ -17,7 +17,7 @@ const Pagination = ({ pages, pageNumber, route }: PaginationProps) => {
   return (
     <div className="flex items-center justify-center mt-8 mb-12 w-full gap-2">
       {
-        (pageNumber !== 1) &&
+        (pageNumber > 1) &&
         <Link href={`${route}?pageNumber=${prev}`} className="border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 p-2.5 rounded-lg font-bold text-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800 transition shadow-sm" ><GrPrevious /></Link>
       }
       {pagesArray.map(page => (
@@ -30,7 +30,7 @@ const Pagination = ({ pages, pageNumber, route }: PaginationProps) => {
         </Link>
       ))}
       {
-        (pageNumber !== pages) &&
+        (pageNumber < pages) &&
         <Link href={`${route}?pageNumber=${next}`} className="border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 p-2.5 rounded-lg font-bold text-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800 transition shadow-sm" ><GrNext /></Link>
       }
     </div>
