@@ -36,18 +36,26 @@ export async function getArticlesCount(): Promise<number> {
 
 // Get Single Article
 export async function getSingleArticle(id: string): Promise<SingleArticle | null> {
-    const article = await prisma.article.findUnique({
-        where: { id: parseInt(id) },
-        include: {
-            comments: {
-                include: {
-                    user: true
-                },
-                orderBy: {
-                    createdAt: 'desc'
+    try {
+        const articleId = parseInt(id);
+        if (isNaN(articleId)) return null;
+
+        const article = await prisma.article.findUnique({
+            where: { id: articleId },
+            include: {
+                comments: {
+                    include: {
+                        user: true
+                    },
+                    orderBy: {
+                        createdAt: 'desc'
+                    }
                 }
             }
-        }
-    });
-    return article as SingleArticle;
+        });
+        return article as SingleArticle;
+    } catch (error) {
+        console.error("Error fetching article:", error);
+        return null;
+    }
 }
