@@ -51,10 +51,10 @@ const adminCommentTable = async () => {
                     <td className='p-8'>
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm border border-blue-200 dark:border-blue-800">
-                          {comment.user.username.charAt(0).toUpperCase()}
+                          {comment.user?.username?.charAt(0).toUpperCase() || "?"}
                         </div>
                         <span className="font-black text-gray-900 dark:text-white tracking-tight">
-                          {comment.user.username}
+                          {comment.user?.username || "Deleted User"}
                         </span>
                       </div>
                     </td>
