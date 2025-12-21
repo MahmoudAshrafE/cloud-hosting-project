@@ -11,8 +11,8 @@ const AdminUsersLoading = () => {
                 <Skeleton className="h-[72px] w-32 rounded-2xl" />
             </div>
 
-            <div className="bg-slate-900 rounded-[2.5rem] border border-slate-800 shadow-xl overflow-hidden">
-                <div className="bg-slate-800/50 p-8 border-b border-slate-800">
+            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-xl overflow-hidden">
+                <div className="bg-gray-50 dark:bg-slate-800/50 p-8 border-b border-gray-100 dark:border-slate-800">
                     <div className="flex gap-8">
                         <Skeleton className="h-4 w-1/4" />
                         <Skeleton className="h-4 w-1/4 hidden md:block" />
@@ -21,7 +21,7 @@ const AdminUsersLoading = () => {
                     </div>
                 </div>
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div key={i} className="p-8 border-b border-slate-800/50 flex items-center gap-8">
+                    <div key={i} className="p-8 border-b border-gray-100 dark:border-slate-800/50 flex items-center gap-8">
                         <div className="flex items-center gap-4 w-1/4">
                             <Skeleton className="w-12 h-12 rounded-2xl" />
                             <Skeleton className="h-6 w-32" />

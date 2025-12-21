@@ -1,45 +1,33 @@
 'use client'
 
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { MdDarkMode, MdLightMode } from 'react-icons/md'
+import { BsMoonStars, BsSun } from 'react-icons/bs'
 
 export default function ThemeToggle() {
-    const [isDark, setIsDark] = useState(false)
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme, resolvedTheme } = useTheme()
 
-    useEffect(() => {
-        // Check localStorage and system preference on mount
-        const savedTheme = localStorage.getItem('theme')
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    useEffect(() => setMounted(true), [])
 
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            setIsDark(true)
-            document.documentElement.classList.add('dark')
-        }
-    }, [])
-
-    const toggleTheme = () => {
-        if (isDark) {
-            document.documentElement.classList.remove('dark')
-            localStorage.setItem('theme', 'light')
-            setIsDark(false)
-        } else {
-            document.documentElement.classList.add('dark')
-            localStorage.setItem('theme', 'dark')
-            setIsDark(true)
-        }
+    if (!mounted) {
+        return (
+            <div className="w-10 h-10 rounded-xl bg-gray-200 dark:bg-slate-800 animate-pulse"></div>
+        )
     }
+
+    const isDark = resolvedTheme === 'dark';
 
     return (
         <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle theme"
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-indigo-600 dark:text-yellow-400 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all border border-gray-200 dark:border-slate-700 shadow-sm active:scale-95 group"
+            aria-label="Toggle Dark Mode"
         >
-            {isDark ? (
-                <MdLightMode className="text-2xl text-yellow-400" />
-            ) : (
-                <MdDarkMode className="text-2xl text-gray-700" />
-            )}
+            {isDark ?
+                <BsSun className="text-xl group-hover:rotate-90 transition-transform duration-300" /> :
+                <BsMoonStars className="text-xl group-hover:-rotate-12 transition-transform duration-300" />
+            }
         </button>
     )
 }

@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import type { ReactNode } from "react";
+import { ThemeProviders } from "@/components/ThemeProviders";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -25,19 +26,23 @@ type Props = {
   }>;
 };
 
+
+
 export default async function RootLayout({ children, params }: Props) {
-  const { locale } = await params; 
+  const { locale } = await params;
 
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className="dark">
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <body className={`${outfit.className} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <ToastContainer theme="colored" position="top-center" />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <ThemeProviders>
+            <Header />
+            <ToastContainer theme="colored" position="top-center" />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </ThemeProviders>
         </NextIntlClientProvider>
       </body>
     </html>

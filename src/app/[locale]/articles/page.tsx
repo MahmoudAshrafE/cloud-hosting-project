@@ -40,7 +40,7 @@ const ArticlesPage = async ({ searchParams }: ArticlesPageProps) => {
 
         <SearchArticleInput />
 
-        <div className="flex items-center justify-center flex-wrap gap-10 mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
           {articles.map(item =>
             <ArticleItem article={item} key={item.id} />
           )}

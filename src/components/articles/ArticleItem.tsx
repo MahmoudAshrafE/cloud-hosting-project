@@ -11,13 +11,13 @@ interface ArticleItemProps {
 const ArticleItem = ({ article }: ArticleItemProps) => {
     const t = useTranslations('ArticlesPage');
     return (
-        <div className="group p-8 rounded-[2.5rem] my-4 shadow-sm hover:shadow-2xl border border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-700 w-full md:w-[45%] lg:w-[31%] flex flex-col justify-between overflow-hidden relative" key={article.id}>
+        <div className="group p-8 rounded-[2.5rem] my-4 shadow-sm hover:shadow-2xl border border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-700 w-full flex flex-col justify-between overflow-hidden relative" key={article.id}>
             {/* Hover decorative element - Dark mode only */}
             <div className="hidden dark:block absolute -right-4 -top-4 w-24 h-24 bg-blue-500/5 dark:bg-blue-400/5 blur-2xl rounded-full group-hover:bg-blue-500/10 transition-colors"></div>
 
             <div className="relative z-10 h-full flex flex-col">
                 <div className="relative overflow-hidden rounded-2xl mb-8 group-hover:shadow-xl transition-all duration-500 bg-gray-50 dark:bg-slate-800 aspect-[16/10]">
-                    {article.image ? (
+                    {(article.image && (article.image.startsWith('/') || article.image.startsWith('http'))) ? (
                         <Image
                             src={article.image}
                             alt={article.title}

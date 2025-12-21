@@ -55,23 +55,23 @@ const SearchArticleInput = () => {
                 {/* Animated Background Glow */}
                 <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[3rem] blur-xl opacity-20 group-focus-within:opacity-50 transition duration-1000 group-focus-within:duration-200"></div>
 
-                <div className="relative flex items-center bg-white dark:bg-slate-900/60 backdrop-blur-3xl rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-2xl transition-all duration-300 group-focus-within:border-blue-500/50 p-1.5">
-                    <div className="pl-8 md:pl-10 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-                        {isLoading ? <FiLoader className="text-2xl md:text-3xl animate-spin" /> : <FiSearch className="text-2xl md:text-3xl" />}
+                <div className="relative flex items-center bg-white dark:bg-slate-900/60 backdrop-blur-3xl rounded-2xl md:rounded-[2.5rem] border border-gray-100 dark:border-slate-800 shadow-2xl transition-all duration-300 group-focus-within:border-blue-500/50 p-1 md:p-1.5">
+                    <div className="pl-5 md:pl-10 text-gray-400 group-focus-within:text-blue-500 transition-colors">
+                        {isLoading ? <FiLoader className="text-xl md:text-3xl animate-spin" /> : <FiSearch className="text-xl md:text-3xl" />}
                     </div>
 
                     <input
                         type="search"
-                        className="w-full bg-transparent px-6 py-6 md:px-10 md:py-8 text-xl md:text-2xl text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 font-extrabold outline-none border-none selection:bg-blue-500/30"
+                        className="w-full bg-transparent px-4 py-4 md:px-10 md:py-8 text-lg md:text-2xl text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 font-extrabold outline-none border-none selection:bg-blue-500/30"
                         placeholder={t('search_placeholder')}
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                     />
 
-                    <div className="pr-4 md:pr-6">
+                    <div className="pr-2 md:pr-6">
                         <button
                             type="submit"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-[1.8rem] text-lg font-black transition-all shadow-xl shadow-blue-500/20 active:scale-95 uppercase tracking-widest hidden sm:block"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 md:px-10 md:py-5 rounded-xl md:rounded-[1.8rem] text-sm md:text-lg font-black transition-all shadow-xl shadow-blue-500/20 active:scale-95 uppercase tracking-widest hidden sm:block"
                         >
                             {t('search_btn')}
                         </button>

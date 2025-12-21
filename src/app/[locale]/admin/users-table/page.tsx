@@ -17,7 +17,7 @@ const AdminUsersTable = async () => {
         <section className="flex flex-col gap-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-2">
+                    <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter uppercase mb-2">
                         {t('users_title')}
                     </h1>
                     <p className="text-slate-400 font-medium text-lg">

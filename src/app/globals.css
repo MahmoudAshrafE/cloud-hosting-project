@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-gray-50: oklch(0.985 0 0);
@@ -14,13 +16,14 @@
 }
 
 :root {
-  --bg-color: #ffffff;
+  --bg-color: #f9fafb;
   --bg-secondary: #f8fafc;
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --border-color: #e2e8f0;
   --card-bg: #ffffff;
   --blue-primary: #2563eb;
+  color-scheme: light dark;
 }
 
 .dark {
@@ -145,7 +148,7 @@ button:disabled {
   animation: float 4s ease-in-out infinite;
 }
 
-/* Scroll Progress Bar (Optional but cool) */
+/* Scroll Progress Bar */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -156,7 +159,7 @@ button:disabled {
   z-index: 100;
 }
 
-/* Ultra-Modern Toastify Redesign with Aperture Shimmer */
+/* Ultra-Modern Toastify Redesign */
 .Toastify__toast-container {
   width: auto !important;
   min-width: 320px !important;
@@ -165,26 +168,36 @@ button:disabled {
 }
 
 .Toastify__toast {
-  background: rgba(15, 23, 42, 0.75) !important;
-  backdrop-filter: blur(30px) saturate(210%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(210%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
   border-radius: 1.5rem !important;
   padding: 1rem 1.8rem !important;
   box-shadow:
-    0 10px 20px -5px rgba(0, 0, 0, 0.3),
-    0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+    0 10px 20px -5px rgba(0, 0, 0, 0.1),
+    0 20px 40px -12px rgba(0, 0, 0, 0.1) !important;
   margin-bottom: 12px !important;
   display: flex !important;
   align-items: center !important;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
   overflow: hidden !important;
-  /* For the shimmer effect */
   position: relative !important;
+  color: #1e293b !important;
 }
 
-/* Aperture Shimmer Animation */
+.dark .Toastify__toast {
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(30px) saturate(210%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(210%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 10px 20px -5px rgba(0, 0, 0, 0.3),
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+}
+
 @keyframes toastShimmer {
   0% {
     transform: translateX(-150%) skewX(-25deg);
@@ -206,14 +219,13 @@ button:disabled {
   left: 0;
   width: 100px;
   height: 100%;
-  background: linear-gradient(to right,
-      transparent,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.05),
-      transparent);
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05), transparent);
   animation: toastShimmer 4s infinite linear;
   pointer-events: none;
+}
+
+.dark .Toastify__toast::after {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .Toastify__toast-body {
@@ -222,14 +234,16 @@ button:disabled {
   font-size: 1rem !important;
   font-weight: 800 !important;
   letter-spacing: -0.01em !important;
-  color: #fff !important;
+  color: inherit !important;
   display: flex !important;
   align-items: center !important;
 }
 
-/* Success Toast - Enhanced with Type Glow */
 .Toastify__toast--success {
   border: 1px solid rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark .Toastify__toast--success {
   box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -241,12 +255,13 @@ button:disabled {
   height: 100%;
   width: 6px;
   background: #10b981;
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
 }
 
-/* Error Toast - Enhanced with Type Glow */
 .Toastify__toast--error {
   border: 1px solid rgba(244, 63, 94, 0.4) !important;
+}
+
+.dark .Toastify__toast--error {
   box-shadow: 0 0 40px -10px rgba(244, 63, 94, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -258,12 +273,13 @@ button:disabled {
   height: 100%;
   width: 6px;
   background: #f43f5e;
-  box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
 }
 
-/* Warning Toast - Enhanced with Type Glow */
 .Toastify__toast--warning {
   border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+
+.dark .Toastify__toast--warning {
   box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -275,7 +291,6 @@ button:disabled {
   height: 100%;
   width: 6px;
   background: #f59e0b;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
 }
 
 .Toastify__toast-icon {
@@ -285,13 +300,21 @@ button:disabled {
 
 .Toastify__close-button {
   margin-left: 14px !important;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+.dark .Toastify__close-button {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
 .Toastify__close-button:hover {
-  color: #fff !important;
+  color: #000 !important;
   transform: scale(1.1) rotate(90deg);
+}
+
+.dark .Toastify__close-button:hover {
+  color: #fff !important;
 }
 
 .Toastify__progress-bar {

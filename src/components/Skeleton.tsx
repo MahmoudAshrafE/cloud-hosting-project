@@ -6,7 +6,7 @@ interface SkeletonProps {
 }
 
 const Skeleton = ({ className = '', variant = 'rect' }: SkeletonProps) => {
-    const baseClasses = 'animate-pulse bg-slate-800/50 dark:bg-slate-800/50';
+    const baseClasses = 'animate-pulse bg-gray-200 dark:bg-slate-800/50';
     const variantClasses = {
         rect: 'rounded-2xl',
         circle: 'rounded-full',

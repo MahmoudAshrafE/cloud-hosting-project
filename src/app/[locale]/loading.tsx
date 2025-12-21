@@ -2,7 +2,7 @@ import { IoCloudCircle } from "react-icons/io5";
 
 const loading = () => {
     return (
-        <section className='min-h-[calc(100vh-140px)] flex flex-col items-center justify-center bg-slate-950 px-5'>
+        <section className='min-h-[calc(100vh-140px)] flex flex-col items-center justify-center bg-gray-50 dark:bg-slate-950 px-5 transition-colors duration-300'>
             <div className="relative">
                 {/* Outer glow rings */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl animate-pulse"></div>

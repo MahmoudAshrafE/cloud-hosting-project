@@ -16,14 +16,14 @@ const Hero = async () => {
                     <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-ping"></span>
                     {t('premium_badge')}
                 </div>
-                <h1 className="text-5xl md:text-8xl font-black text-gray-900 dark:text-white mb-8 leading-[1.1] tracking-tighter">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 dark:text-white mb-6 leading-[1.1] tracking-tighter">
                     {t('hero_title').split(' ').map((word, i) => (
                         <span key={i} className={word.toLowerCase() === 'cloud' || word.toLowerCase() === 'hosting' ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200' : ''}>
                             {word}{' '}
                         </span>
                     ))}
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl leading-relaxed font-bold">
+                <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl leading-relaxed font-bold">
                     {t('hero_desc')}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
