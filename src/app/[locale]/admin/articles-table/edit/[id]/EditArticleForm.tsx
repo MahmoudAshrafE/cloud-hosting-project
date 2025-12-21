@@ -3,7 +3,7 @@ import ButtonSpiner from '@/components/ButtonSpiner'
 import { Article } from '@/generated/prisma/client'
 
 import axios, { AxiosError } from 'axios'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -19,6 +19,8 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
     const [image, setImage] = useState(article.image || "")
     const [loading, setLoading] = useState(false)
     const router = useRouter()
+    const searchParams = useSearchParams();
+    const pageNumber = searchParams.get('pageNumber') || "1";
 
     const formSubmitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,7 +35,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
         try {
             setLoading(true)
             await axios.put(`/api/articles/${article.id}`, { title, description, image })
-            router.push('/admin/articles-table')
+            router.push(`/admin/articles-table?pageNumber=${pageNumber}`)
             toast.success(t('article_updated'))
             router.refresh()
 

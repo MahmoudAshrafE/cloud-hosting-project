@@ -60,7 +60,7 @@ const adminArticleTable = async ({ searchParams }: AdminArticleTableProps) => {
                     </td>
                     <td className='p-8'>
                       <div className="flex gap-4">
-                        <Link href={`/admin/articles-table/edit/${article.id}`} className='bg-emerald-50 content-center dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl p-4 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all shadow-sm active:scale-95'>
+                        <Link href={`/admin/articles-table/edit/${article.id}?pageNumber=${pageNumber}`} className='bg-emerald-50 content-center dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl p-4 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all shadow-sm active:scale-95'>
                           <FaEdit className="text-xl" />
                         </Link>
                         <DeleteArticleButton articleId={article.id} />
